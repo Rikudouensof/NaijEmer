@@ -1,0 +1,361 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="NaijEmer.MainPage"
+            BarBackgroundColor="DarkGray"
+            >
+    <ContentPage Title="Convid_19 live" IconImageSource="Updateicon.png">
+        <ContentPage.Content>
+            <StackLayout>
+                <StackLayout BackgroundColor="#154854"
+                             HorizontalOptions="FillAndExpand"
+                             Margin="10,00"
+                             
+                             >
+                    <Label Text="Historical view of Covid_19 in Nigeria"
+                           FontSize="Title"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center"
+                           HorizontalOptions="CenterAndExpand"
+                           VerticalOptions="Center"
+                           Margin="00,10"
+                           TextColor="White"
+                           x:Name="HeaderTitleLabel"
+                           />
+
+                </StackLayout>
+                <ListView x:Name="ConvidDetailsListview"
+                      Margin="10,00"
+                      HasUnevenRows="True"
+                      SeparatorColor="#154854"
+                     SelectionMode="None"
+                      HorizontalOptions="FillAndExpand">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+
+
+                                    <Label Text="{Binding Date}"
+                                       Grid.Column="2"
+                                       FontSize="18"
+                                           FontAttributes="Bold"
+                                       HorizontalTextAlignment="Center"
+                                       HorizontalOptions="EndAndExpand"
+                                       TextColor="#154854"
+                                       x:Name="WegloLabel"
+                                     
+                                       />
+                                    <Frame CornerRadius="8"
+                                              Grid.Row="1"
+                                             BackgroundColor="#154854"
+                                             Grid.Column="0"
+                                           >
+                                        <StackLayout Orientation="Vertical"
+                                          
+                                             HorizontalOptions="FillAndExpand"
+                                             VerticalOptions="FillAndExpand"
+                                             BackgroundColor="#154854"
+                                                 >
+                                            <Label VerticalOptions="CenterAndExpand"
+                                           Text="{Binding Confirmed}"
+                                           FontSize="Title"
+                                                 HorizontalOptions="CenterAndExpand"
+                                           LineBreakMode="WordWrap"
+                                           TextColor="White"
+                                           FontAttributes="Bold"
+                                           />
+                                            <Label Text="Confirmed"
+                                           TextColor="White"
+                                                 HorizontalOptions="CenterAndExpand"
+                                           LineBreakMode="WordWrap"
+                                           />
+
+
+                                        </StackLayout>
+
+                                    </Frame>
+
+                                    <Frame CornerRadius="8"
+                                               Grid.Row="1"
+                                             Grid.Column="1"
+                                            BackgroundColor="Red">
+                                        <StackLayout Orientation="Vertical"
+                                            
+                                             HorizontalOptions="FillAndExpand"
+                                             VerticalOptions="FillAndExpand"
+                                             BackgroundColor="Red">
+                                            <Label VerticalOptions="CenterAndExpand"
+                                           Text="{Binding Deaths}"
+                                           FontSize="Title"
+                                           LineBreakMode="WordWrap"
+                                           TextColor="White"
+                                               HorizontalOptions="CenterAndExpand"
+                                           FontAttributes="Bold"
+                                           />
+                                            <Label Text="Deaths"
+                                           TextColor="White"
+                                                 HorizontalOptions="CenterAndExpand"
+                                           LineBreakMode="WordWrap"
+                                           />
+
+
+                                        </StackLayout>
+
+                                    </Frame>
+                                   
+
+                                    <Frame CornerRadius="8"
+                                              Grid.Row="1"
+                                           BackgroundColor="Green"
+                                             Grid.Column="2"
+                                           >
+
+                                        <StackLayout Orientation="Vertical"
+                                           
+                                             HorizontalOptions="FillAndExpand"
+                                             VerticalOptions="FillAndExpand"
+                                             BackgroundColor="Green"
+                                             
+                                             >
+                                            <Label VerticalOptions="CenterAndExpand"
+                                           Text="{Binding Recovered}"
+                                           FontSize="Title"
+                                           HorizontalOptions="CenterAndExpand"
+                                           LineBreakMode="WordWrap"
+                                           TextColor="White"
+                                           FontAttributes="Bold"
+                                           
+                                           />
+                                            <Label Text="Recovered"
+                                           TextColor="White"
+                                           LineBreakMode="WordWrap"
+                                                 HorizontalOptions="CenterAndExpand"
+                                           />
+
+
+                                        </StackLayout>
+
+                                    </Frame>
+
+                                   
+
+                                    <Frame CornerRadius="8"
+                                              Grid.Row="2"
+                                             Grid.Column="0"
+                                             BackgroundColor="#154854"
+                                             Grid.ColumnSpan="3"
+                                           Margin="00,00,00,40"
+                                           >
+                                        <StackLayout Orientation="Vertical"
+                                           
+                                             HorizontalOptions="FillAndExpand"
+                                             VerticalOptions="FillAndExpand"
+                                             BackgroundColor="#154854">
+                                            <Label VerticalOptions="CenterAndExpand"
+                                           Text="{Binding Active}"
+                                           FontSize="Title"
+                                                 HorizontalOptions="CenterAndExpand"
+                                           LineBreakMode="WordWrap"
+                                           TextColor="White"
+                                           FontAttributes="Bold"
+                                           />
+                                            <Label Text="Active"
+                                           TextColor="White"
+                                                 HorizontalOptions="CenterAndExpand"
+                                           LineBreakMode="WordWrap"
+                                           />
+
+
+                                        </StackLayout>
+                                    </Frame>
+
+                                  
+
+                                    <ActivityIndicator x:Name="ConvidAivctityIndicator"
+                                       Grid.Row="1"
+                                       Grid.RowSpan="2"
+                                       Grid.ColumnSpan="3"
+                                       IsVisible="False"
+                                                       IsRunning="False"
+                                                   WidthRequest="100"
+                                                   HeightRequest="150"
+                                       />
+                                </Grid>
+
+
+                            </ViewCell>
+
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+            </StackLayout>
+          
+        </ContentPage.Content>
+    </ContentPage>
+
+    <ContentPage Title="Emergency Contacts" IconImageSource="Emergencyicon.png">
+        <ContentPage.Content>
+            <StackLayout>
+                <SearchBar HorizontalOptions="FillAndExpand"
+                           Keyboard="Chat"
+                           Margin="10,00"
+                           x:Name="WaldiskSearchber"
+                           PlaceholderColor="#154854"
+                           Placeholder="Search"
+                           TextColor="#154854"
+                           TextChanged="WaldiskSearchber_TextChanged"
+                           />
+
+
+                <ListView x:Name="Waldisk"
+                      Margin="10,00"
+                      HasUnevenRows="True"
+                      SeparatorColor="#154854"
+                     SelectionMode="None"
+                      HorizontalOptions="FillAndExpand">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label Text="{Binding DateCreated}"
+                                       Grid.Column="1"
+                                       FontSize="15"
+                                           FontAttributes="Bold"
+                                       HorizontalTextAlignment="Center"
+                                       HorizontalOptions="EndAndExpand"
+                                       TextColor="#154854"
+                                      BackgroundColor="Transparent"
+                                       
+                                       />
+
+                                    <Label Text="{Binding Title}"
+                                       Grid.Column="0"
+                                       Grid.ColumnSpan="1"
+                                       FontSize="18"
+                                       LineBreakMode="WordWrap"
+                                       
+                                           FontAttributes="Bold"
+                                       HorizontalTextAlignment="Center"
+                                       HorizontalOptions="StartAndExpand"
+                                       TextColor="#154854"
+                                       />
+
+                                    <Frame CornerRadius="8"
+                                       BackgroundColor="#154854"
+                                       Grid.Row="1"
+                                       HorizontalOptions="FillAndExpand">
+                                        <StackLayout BackgroundColor="White">
+                                            <ImageButton Source="Call.png"
+                                                 Clicked="ImageButton_Clicked"
+                                                 BackgroundColor="Transparent"/>
+
+                                        </StackLayout>
+
+                                    </Frame>
+
+                                    <Frame CornerRadius="8"
+                                       BackgroundColor="#154854"
+                                       Grid.Column="1"
+                                       Grid.Row="1"
+                                       HorizontalOptions="FillAndExpand">
+                                        <StackLayout BackgroundColor="White">
+                                            <ImageButton Source="Email.png"
+                                                 Clicked="ImageButton_Clicked_1"
+                                                 BackgroundColor="Transparent"/>
+
+                                        </StackLayout>
+
+
+                                    </Frame>
+
+
+
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </StackLayout>
+          
+        </ContentPage.Content>
+    </ContentPage>
+
+    <ContentPage Title="About" IconImageSource="AboutUsicon.png">
+        <ContentPage.Content>
+            <ScrollView HorizontalOptions="FillAndExpand"
+                         VerticalOptions="FillAndExpand"
+                         Margin="10,00">
+                <StackLayout Orientation="Vertical"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="FillAndExpand"
+                         >
+                    <Label HorizontalOptions="Center"
+                       Text="Emergency Nigeria"
+                       TextColor="#154854"
+                       FontAttributes="Bold"
+                       FontSize="Title"
+                       />
+
+                    <Label HorizontalOptions="Center"
+                       Text="Emergency Nigeria(EN) is a tool that gears towards providing authentic authorised content about convid_19 in Nigeria. EN is a joint project of IEEE Esut Student Branch and PYMECH. The Contacts was last updated 8th May 2020"
+                       TextColor="#154854"
+                       FontAttributes="Bold"
+                       FontSize="Subtitle"
+                       LineBreakMode="WordWrap"
+                       HorizontalTextAlignment="Center"
+                       />
+                    <Image Source="py.png"
+                       HorizontalOptions="CenterAndExpand"
+                       Aspect="AspectFit"
+                       VerticalOptions="CenterAndExpand"
+                       />
+                    <Image Source="download.jfif"
+                       HorizontalOptions="CenterAndExpand"
+                       Aspect="AspectFit"
+                       VerticalOptions="CenterAndExpand"
+                       />
+                    <Image Source="Watt.jpg"
+                       HorizontalOptions="CenterAndExpand"
+                       Aspect="AspectFit"
+                       VerticalOptions="CenterAndExpand"
+                       />
+
+                </StackLayout>
+            </ScrollView>
+            
+
+        </ContentPage.Content>
+    </ContentPage>
+
+
+
+</TabbedPage>
