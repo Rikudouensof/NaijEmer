@@ -9,6 +9,12 @@ namespace NaijEmer
         public App()
         {
             InitializeComponent();
+            Device.SetFlags(new[]
+            {
+                "SwipeView_Experimental",
+                "CarouelView_Experimental",
+                "IndicatorView_Experimental"
+            });
 
             MainPage = new MainPage();
         }

@@ -34,5 +34,7 @@
 	<string>NaijEmer</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcons.appiconset</string>
+	<key>UIRequiresFullScreen</key>
+	<true/>
 </dict>
 </plist>

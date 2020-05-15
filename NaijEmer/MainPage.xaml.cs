@@ -42,24 +42,55 @@ namespace NaijEmer
             {
                 await DisplayAlert("error", "You are not connected", "Reconnect");
                 HeaderTitleLabel.Text = "You are not connected";
-
+                return;
             }
-            
-           var client = new RestClient("https://api.covid19api.com/total/country/Nigeria");
-            client.Timeout = -1;
-            var request = new RestRequest(Method.GET);
-            IRestResponse response = client.Execute(request);
-            // HttpClient weclient = new HttpClient();
 
-            var pendingProducts = JsonConvert.DeserializeObject<List<Class3>>(response.Content);
+            try
+            {
+                var client = new RestClient("https://api.covid19api.com/total/country/Nigeria");
+                client.Timeout = -1;
+                var request = new RestRequest(Method.GET);
+                IRestResponse response = client.Execute(request);
+                // HttpClient weclient = new HttpClient();
 
-            List<Class3> class3s = new List<Class3>();
+                var pendingProducts = JsonConvert.DeserializeObject<List<Class3>>(response.Content);
 
-            class3s.Add(new Class3 { Date = DateTime.Now, Deaths = 334, Active = 233, Recovered = 332, Confirmed = 554 });
+                List<Class3> class3s = new List<Class3>();
 
-            ConvidDetailsListview.ItemsSource = pendingProducts.OrderByDescending(m => m.Date);
+                class3s.Add(new Class3 { Date = DateTime.Now, Deaths = 334, Active = 233, Recovered = 332, Confirmed = 554 });
 
+                ConvidDetailsListview.ItemsSource = pendingProducts.OrderByDescending(m => m.Date);
+            }
+            catch (Exception)
+            {
+
+                await DisplayAlert("Opps!", "General report is updating", "Ok");
+            }
+            try
+            {
+                var client = new RestClient("https://nigeria-covid-19.p.rapidapi.com/api/states");
+                var request = new RestRequest(Method.GET);
+                request.AddHeader("x-rapidapi-host", "nigeria-covid-19.p.rapidapi.com");
+                request.AddHeader("x-rapidapi-key", "30bd65569cmsh84797f37709d8adp116789jsn23fed2b1dd41");
+                IRestResponse response = client.Execute(request);
+               
+                // HttpClient weclient = new HttpClient();
+
+                var pendingProducts = JsonConvert.DeserializeObject<List<StateCovid19situation>>(response.Content);
+
+
+
+                StatesListview.ItemsSource = pendingProducts.OrderBy(m => m.States);
+            }
+            catch (Exception)
+            {
+
+                await DisplayAlert("Opps!", "State report is updating", "Ok");
+            }
         }
+           
+
+        
 
         private async void ImageButton_Clicked(object sender, EventArgs e)
         {
@@ -82,7 +113,7 @@ namespace NaijEmer
             var contactDetail = (EmergencyContactCLass)((ImageButton)sender).BindingContext;
             if (contactDetail.Email.Equals(null) || string.IsNullOrEmpty(contactDetail.Email))
             {
-                await DisplayAlert("Opps!", "Email Number not available", "Ok");
+                await DisplayAlert("Opps!", "Email not available", "Ok");
 
             }
             else
